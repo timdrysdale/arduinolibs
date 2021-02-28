@@ -22,12 +22,10 @@ DC Motor controller functions for PID Controller Remote Lab.
 class MotorBTS7960
 {
   public:
-  MotorBTS7960(int wavePin, int enableLPin, int enableRPin, int offset, long prescale);
+  MotorBTS7960(int enablePin, int leftPWMPin, int rightPWMPin, int timerNumber, int offset, long prescale);
 
     //Speed is an integer between -255 and 255.
   void drive(float speed);  
-	
-  void drive(float speed, int duration);
   
   void setPrescale(long prescale);
 
@@ -44,7 +42,7 @@ class MotorBTS7960
   
   private:
   //PIN variables for the motor controller board
-  int wave, enableL, enableR;
+  int enable, leftPWM, rightPWM, timer;
 
   //direction adjustment
   int Offset;
@@ -55,8 +53,7 @@ class MotorBTS7960
   unsigned int speedToDuty(float speed);
   void fwd(float speed);
   void rev(float speed);
-  //control the pwm on the enable pin
-  void pwm(float speed);
+
   
 };
 
